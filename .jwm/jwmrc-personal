@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+
+<JWM>
+
+<!-- Key bindings -->
+
+    <Key mask="A" key="f">
+        exec:st -e sh -c "fsck -y /dev/sdb1; sleep 5"
+    </Key>
+    <Key mask="A" key="m">
+        exec:$HOME/.local/bin/dm-mount.sh
+    </Key>
+    <Key mask="A" key="n">
+        exec:urxvt -g 100x36 -T newsboat -e sh -c newsboat
+    </Key>
+    <Key mask="A" key="s">
+        exec:$HOME/.local/bin/dm-ssh.sh
+    </Key>
+    <Key mask="A" key="v">
+        exec:$HOME/.local/bin/dm-vpn.sh
+    </Key>
+    <Key mask="A" key="y">
+        exec:$HOME/.local/bin/yt-feed2nb.sh
+    </Key>
+    <Key mask="A" key="z">
+        exec:st -g 100x48 -f "Liberation Mono:pixelsize=15" -e zsh -l -i -c tmux
+    </Key>
+    <Key mask="A" key="Up">
+        exec:amixer set Master 6dB+
+    </Key>
+    <Key mask="A" key="Down">
+        exec:amixer set Master 6dB-
+    </Key>
+    <Key mask="A" key="Left">
+        exec:amixer set Master mute
+    </Key>
+    <Key mask="A" key="Right">
+        exec:amixer set Master unmute
+    </Key>
+
+</JWM>
