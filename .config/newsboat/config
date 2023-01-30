@@ -1,0 +1,130 @@
+# general settings
+
+max-items 50 
+reload-time 30 # update all feeds every x minutes
+reload-threads 100
+prepopulate-query-feeds yes
+cleanup-on-quit yes
+# confirm-mark-feed-read no
+# wrap-scroll yes
+
+#browser         "palemoon %u" 
+#browser         "google-chrome --incognito %u" 2> /dev/null 
+#browser         "chromium --incognito %u" 2> /dev/null 
+browser         "google-chrome-stable --incognito %u" 2> /dev/null 
+player          "mpv"
+download-path   "$HOME/Downloads/%n"
+save-path       "$HOME/Downloads"
+text-width      78
+#show-read-feeds no
+
+auto-reload yes
+
+bind-key a toggle-article-read
+bind-key n next-unread
+bind-key N prev-unread
+bind-key d delete-article
+bind-key D pb-download
+bind-key U show-urls
+bind-key x pb-delete
+
+# config from Bugswriter on YouTube
+
+# bind-key j down
+# bind-key k up
+# bind-key j next articlelist
+# bind-key k prev articlelist
+# bind-key J next-feed articlelist
+# bind-key K prev-feed articlelist
+# bind-key G end
+# bind-key g home
+# bind-key d pagedown
+# bind-key u pageup
+# bind-key h quit
+
+# color background          default default
+# color listnormal          default default
+# color listfocus           black   yellow dim
+# color listnormal_unread   default default bold
+# color listfocus_unread    black   yellow underline
+# color info                default red
+# color article             default default
+
+# # highlight all "---.*---" default
+# highlight all "---.*---" cyan default bold
+# highlight feedlist ".*(0/0))" black
+# highlight article "(^Feed:.*|^Title:.*|^Author:.*)" cyan default bold
+# highlight article "(^Link:.*|^Date:.*)" default default
+# highlight article "https?://[^ ]+" green default
+# highlight article "^(Title):.*$" blue default
+# highlight article "\\[[0-9][0-9]*\\]" yellow default bold
+# highlight article "\\[image\\ [0-9]+\\]" green default bold
+# highlight article "\\[embedded flash: [0-9][0-9]*\\]" green default bold
+# highlight article ":.*\\(link\\)$" cyan default
+# highlight article ":.*\\(image\\)$" blue default
+# highlight article ":.*\\(embedded flash\\)$" magenta default
+
+# # browser "readable -s ~/.cache/wal/style.css %u 2> /dev/null > /tmp/output.html; qutebrowser /tmp/output.html"
+# # browser linkhandler
+
+
+# ----- jwilcox -----
+
+# externel browser
+# browser "w3m %u"
+# macro . set browser "/home/djwilcox/bin/sauron %u"; open-in-browser ; set browser "w3m %u"
+# macro / set browser "python3 -m readability.readability -u %u 2> /dev/null | w3m -T text/html"; open-in-browser ; set browser "w3m %u"
+# macro l set browser "xdg-open %u"; open-in-browser ; set browser "w3m %u"
+# macro p set browser "/home/djwilcox/bin/punch -i %u 2> /dev/null"; one; set browser "w3m %u"
+
+# urlscan
+# external-url-viewer "urlscan"
+
+# html-renderer and pager
+# pager "w3m -T text/html"
+# html-renderer "w3m"
+
+# unbind keys
+# unbind-key ENTER
+# unbind-key j
+# unbind-key k
+# unbind-key J
+# unbind-key K
+
+# bind keys - vim style
+# bind-key j down
+# bind-key k up
+# bind-key l open
+# bind-key h quit
+
+# podboat
+# download-path "~/Downloads/%n"
+# player "mpv"
+
+# colours
+#color background         default default
+color listnormal         default default
+color listnormal_unread  white default
+# color listfocus          black blue
+color listfocus          black cyan
+# color listfocus_unread   black blue
+color listfocus_unread   black cyan
+color info               black blue
+#color article            default default
+color article            white black
+
+# highlights
+highlight article "^(Feed|Title|Link|Date|Author):.*$" color12 color8
+highlight article "https?://[^ ]+" color4 color8 protect
+
+# styling
+#highlight feedlist "[║│]" default default bold
+#highlight feedlist "╠═.*" default default bold
+#feedlist-format "%?T?║%4i %n %8u %t (%T) &╠#%-8t════════════════════════════════════════?"
+
+# notify
+#notify-program "/usr/bin/notify-send"
+
+# kill files ignore articles marked #shorts to filter out youtube shorts
+# ignore-article "*" "title =~ \"#shorts$\""
+
