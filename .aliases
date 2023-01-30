@@ -1,0 +1,108 @@
+# ----------------------------------------------------------------------------
+#   F U N C T I O N   D E F I N I T I O N S
+# ----------------------------------------------------------------------------
+pupff () { find / -path "/initrd/pup_rw" -prune -o -iname "$1" -print; }
+gc () { git add "$1" && git commit -m "$2" && git push; }
+take () { mkdir -p "$1" && cd "$1"; }
+
+ffgrep () {
+    if [ $# -eq 2 ]; then
+        find "$1" -type f -exec grep -Hi "$2" "{}" \; 2> /dev/null
+    elif [ $# -eq 1 ]; then
+        find / -type f -exec grep -Hi "$1" "{}" \; 2> /dev/null
+    else
+        echo "Usage: ffgrep() [rootdir] <pattern>"
+    fi
+}
+
+# ----------------------------------------------------------------------------
+# Set personal aliases.
+# For a full list of active aliases, run `alias`.
+# ----------------------------------------------------------------------------
+
+alias ls='ls -FA --color=auto'
+alias ll='ls -lFA'
+alias llt='ls -lFArt'
+
+# Colorize grep output (good for log files)
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+alias rm='rm -i'
+alias mv='mv -i'
+alias rename='rename -o'
+
+alias getip='wget -O - -q icanhazip.com'
+
+alias ffmpeg='ffmpeg -hide_banner'
+alias ffprobe='ffprobe -hide_banner'
+
+# fuzzy finder from Elijah Manor https://www.youtube.com/watch?v=K1FxGIG_lcA
+# NOTE: fzf-tmux -p doesn't work on FossaPup64
+#     fd --type f --hidden --exclude .git | fzf-tmux -p --reverse | xargs nvim
+alias fd='fdfind'
+alias nvff='fd --type f --hidden --exclude .git . "$HOME" | fzf-tmux | xargs -d '\n' nvim'
+alias vff='fd --type f --hidden --exclude .git . "$HOME" | fzf-tmux | xargs -d '\n' vim'
+
+# send output of 'pwd' to stdout and save output in clipboard for later
+# pasting with Shift+Enter. Note: if we're in '/' it copies '//' to clipboard
+alias pwd="pwd | tee /dev/tty | tr '\n' '/' | xclip -sel primary"
+
+# dotfiles management using git bare repository
+# https://www.atlassian.com/git/tutorials/dotfiles
+# https://news.ycombinator.com/item?id=11070797
+#
+# here's the setup for the local git bare repository in ~/.dotfiles:
+#
+#   git init --bare $HOME/.dotfiles
+#   alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+#   echo "alias $(alias dotfiles)" >> $HOME/.aliases
+#   dotfiles config --local status.showUntrackedFiles no
+#
+# here's the setup for the GitHub repository in 'rtaraschi/dotfiles':
+#
+#   create a new empty private repository on GihHub called 'dotfiles'
+#   go to Settings -> Deploy Keys and add a new key from this computer
+#   git remote add origin git@github.com:rtaraschi/dotfiles.git
+#   cd ~/.dotfiles
+#   git branch -M main
+#   git push -u origin main
+#
+# here's a typical workflow
+#
+#   dotfiles status
+#   dotfiles add .profile
+#   dotfiles commit -m "Add profile"
+#   dotfiles add .aliases
+#   dotfiles commit -m "Add aliases"
+#   dotfiles push
+
+alias dotfiles='/usr/bin/git --git-dir="$HOME/.dotfiles" --work-tree="$HOME"'
+alias .status='dotfiles status'
+alias .add='dotfiles add'
+alias .commit='dotfiles commit'
+alias .push='dotfiles push'
+alias .checkout='dotfiles checkout'
+alias .config='dotfiles config'
+
+
+# here are some lazy options for commonly repeated tasks
+
+alias x='chmod +x'
+alias ..='cd ..'
+alias ....='cd ../..'
+alias hs='fc -l | grep'
+alias pep8='pycodestyle'
+alias vimrc='nvim "$XDG_CONFIG_HOME/nvim/init.lua"'
+alias zshrc='nvim "$XDG_CONFIG_HOME/zsh/.zshrc"'
+
+export SHELLCHECK_OPTS='--norc --color=always --shell=dash --enable=all --wiki-link-count=100' ### --exclude=SC2250,SC2312,SC1090,SC2039
+alias sc1='shellcheck --format=gcc'  ### --include
+
+alias youtube-dl_mono32='youtube-dl --extract-audio --audio-format mp3 --audio-quality 32 --postprocessor-args "-ac 1"'
+
+if [ "$(uname -s)" = "Linux" ] && [ "$(uname -n)" = "fossapup64" ]; then
+    alias startdwm='echo -n "dwm" >| /etc/windowmanager && echo -n "none" >| /etc/desktop_app && \startx'
+    alias startx='echo -n "jwm" >| /etc/windowmanager && echo -n "rox" >| /etc/desktop_app && startx'
+fi
