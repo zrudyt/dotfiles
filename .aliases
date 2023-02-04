@@ -42,8 +42,8 @@ alias ffprobe='ffprobe -hide_banner'
 # NOTE: fzf-tmux -p doesn't work on FossaPup64
 #     fd --type f --hidden --exclude .git | fzf-tmux -p --reverse | xargs nvim
 alias fd='fdfind'
-alias nvff='fd --type f --hidden --exclude .git . "$HOME" | fzf-tmux | xargs -d '\n' nvim'
-alias vff='fd --type f --hidden --exclude .git . "$HOME" | fzf-tmux | xargs -d '\n' vim'
+alias nvff='fd --type f --hidden --exclude .git . "$HOME" | fzf-tmux | xargs nvim'
+alias vff='fd --type f --hidden --exclude .git . "$HOME" | fzf-tmux | xargs vim'
 
 # send output of 'pwd' to stdout and save output in clipboard for later
 # pasting with Shift+Enter. Note: if we're in '/' it copies '//' to clipboard
@@ -85,7 +85,6 @@ alias .commit='dotfiles commit'
 alias .push='dotfiles push'
 alias .checkout='dotfiles checkout'
 alias .config='dotfiles config'
-
 
 # here are some lazy options for commonly repeated tasks
 
