@@ -88,6 +88,7 @@ alias .commit='dotfiles commit'
 alias .push='dotfiles push'
 alias .checkout='dotfiles checkout'
 alias .config='dotfiles config'
+alias .diff='dotfiles diff'
 
 # here are some lazy options for commonly repeated tasks
 

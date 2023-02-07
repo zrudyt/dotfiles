@@ -1,4 +1,4 @@
-export PATH="$HOME/.local/bin":$PATH
+export PATH="$XDG_BIN_HOME:$PATH"
 export MANPAGER='vim +Man!'
 export MANWIDTH=999
 
@@ -32,8 +32,10 @@ PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magent
 #
 #     eval `dircolors /path/to/dircolorsdb`
 
-# eval `dircolors ~/.config/zsh/dircolors/dircolors.ansi-dark`
-eval `dircolors ~/.config/zsh/dircolors/dircolors.256dark`
+if [ "$(uname -s)" = "Linux" ]; then
+    # eval `dircolors "$ZDOTDIR/dircolors/dircolors.ansi-dark"`
+    eval `dircolors "$ZDOTDIR/dircolors/dircolors.256dark"`
+fi
 
 # Basic auto/tab complete:
 autoload -Uz compinit
@@ -101,3 +103,7 @@ zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 # For more plugins: https://github.com/unixorn/awesome-zsh-plugins
 # zsh_add_completion "esc/conda-zsh-completion" false
 # More completions https://github.com/zsh-users/zsh-completions
+#
+# Configure the shell to load .shrc at startup time.
+# This will happen for every shell started, not just login shells.
+export ENV=$HOME/.shrc
