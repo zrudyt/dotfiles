@@ -104,6 +104,11 @@ zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 # zsh_add_completion "esc/conda-zsh-completion" false
 # More completions https://github.com/zsh-users/zsh-completions
 #
-# Configure the shell to load .shrc at startup time.
-# This will happen for every shell started, not just login shells.
-export ENV=$HOME/.shrc
+
+# Autostart Tmux Session On Remote System When Logging In Via SSH
+# https://ostechnix.com/autostart-tmux-session-on-remote-system-when-logging-in-via-ssh/
+#
+if [ -z "$TMUX" ] && [ "$(uname -n | cut -d'.' -f1)" = "starbase" ]; then
+    tmux new -s default || tmux attach -t default
+fi
+
