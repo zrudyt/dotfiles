@@ -1,7 +1,6 @@
 # ----------------------------------------------------------------------------
 #   F U N C T I O N   D E F I N I T I O N S
 # ----------------------------------------------------------------------------
-pupff () { find / -path "/initrd/pup_rw" -prune -o -iname "$1" -print; }
 gc () { git add "$1" && git commit -m "$2" && git push; }
 take () { mkdir -p "$1" && cd "$1"; }
 
@@ -20,7 +19,11 @@ ffgrep () {
 # For a full list of active aliases, run `alias`.
 # ----------------------------------------------------------------------------
 
-alias ls='ls -FA --color=auto'
+if [ "$(uname -s)" = "NetBSD" ]; then
+    alias ls='colorls -FAG'
+else
+    alias ls='ls -FA --color=auto'
+fi
 alias ll='ls -lFA'
 alias llt='ls -lFArt'
 
@@ -78,7 +81,7 @@ alias pwd="pwd | tee /dev/tty | tr '\n' '/' | xclip -sel primary"
 #   dotfiles commit -m "Add aliases"
 #   dotfiles push
 
-alias dotfiles='/usr/bin/git --git-dir="$HOME/.dotfiles" --work-tree="$HOME"'
+alias dotfiles='git --git-dir="$HOME/.dotfiles" --work-tree="$HOME"'
 alias .status='dotfiles status'
 alias .add='dotfiles add'
 alias .commit='dotfiles commit'
@@ -88,7 +91,6 @@ alias .config='dotfiles config'
 
 # here are some lazy options for commonly repeated tasks
 
-alias x='chmod +x'
 alias ..='cd ..'
 alias ....='cd ../..'
 ### alias hs='fc -l | grep'
@@ -103,6 +105,7 @@ alias sc1='shellcheck --format=gcc'  ### --include
 alias youtube-dl_mono32='youtube-dl --extract-audio --audio-format mp3 --audio-quality 32 --postprocessor-args "-ac 1"'
 
 if [ "$(uname -s)" = "Linux" ] && [ "$(uname -n)" = "fossapup64" ]; then
+    pupff () { find / -path "/initrd/pup_rw" -prune -o -iname "$1" -print; }
     alias startdwm='echo -n "dwm" >| /etc/windowmanager && echo -n "none" >| /etc/desktop_app && \startx'
     alias startx='echo -n "jwm" >| /etc/windowmanager && echo -n "rox" >| /etc/desktop_app && startx'
 fi
