@@ -103,7 +103,7 @@ bind-key x pb-delete
 
 # colours
 #color background         default default
-color listnormal         default default
+color listnormal         red default
 color listnormal_unread  white default
 # color listfocus          black blue
 color listfocus          black cyan
