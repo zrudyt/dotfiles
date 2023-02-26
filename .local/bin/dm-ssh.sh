@@ -6,7 +6,7 @@ hosts=$(cat <<- EOF
 EOF
 )
 
-choice=$(echo "$hosts" | dmenu -p "SSH:" -l 10 -b)
+choice=$(echo "$hosts" | dmenu -c -p "SSH:" -l 10 -b)
 
 # if we quote $choice below, we get the following error when run from a shell
 #     couldn't read from shell: Input/output error

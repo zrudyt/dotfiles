@@ -27,7 +27,7 @@ command -v notify-send > /dev/null \
 
 ovpn=$(ls -1t "$VPNDIR/"*\.ovpn \
     | cut -d'/' -f4- \
-    | dmenu -l 20 -p "Pick a VPN file or ESC to kill VPN")
+    | dmenu -c -l 20 -p "Pick a VPN file or ESC to kill VPN")
 
 pid=$(get_openvpn_pid)
 if [ -n "$ovpn" -a "$pid" != "NULL" ]; then

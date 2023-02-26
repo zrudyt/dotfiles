@@ -13,7 +13,7 @@ main () {
 	| sed -e "s|^$XDG_DATA/||")
     [ -z "$files" ] && exit 0
 
-    choice=$(echo "$files" | dmenu -l 20 -p "Show keybindings for:")
+    choice=$(echo "$files" | dmenu -c -l 20 -p "Show keybindings for:")
     [ -z "$choice" ] && exit 0
 
     command -v xmessage \
